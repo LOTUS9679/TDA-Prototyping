@@ -81,14 +81,14 @@ int main()
             
             double persistence = saddle_height - higher_sink_h;
 
-            std::cout << "⚔️  SADDLE FOUND between Lake " << sink_u << " & Lake " << sink_v << std::endl;
+            std::cout << "  SADDLE FOUND between Lake " << sink_u << " & Lake " << sink_v << std::endl;
             std::cout << "    Saddle Height: " << saddle_height << std::endl;
             std::cout << "    Persistence: " << persistence << std::endl;
             
             if (persistence < 3.0) {
-                 std::cout << "    ❌ VERDICT: NOISE (Merge lakes)" << std::endl;
+                 std::cout << "     VERDICT: NOISE (Merge lakes)" << std::endl;
             } else {
-                 std::cout << "    ✅ VERDICT: FEATURE (Keep separate)" << std::endl;
+                 std::cout << "     VERDICT: FEATURE (Keep separate)" << std::endl;
             }
             std::cout << "-----------------------------------" << std::endl;
         }
