@@ -86,9 +86,9 @@ int main()
             std::cout << "    Persistence: " << persistence << std::endl;
             
             if (persistence < 3.0) {
-                 std::cout << "     VERDICT: NOISE (Merge lakes)" << std::endl;
+                 std::cout << " VERDICT: NOISE (Merge lakes)" << std::endl;
             } else {
-                 std::cout << "     VERDICT: FEATURE (Keep separate)" << std::endl;
+                 std::cout << " VERDICT: FEATURE (Keep separate)" << std::endl;
             }
             std::cout << "-----------------------------------" << std::endl;
         }
