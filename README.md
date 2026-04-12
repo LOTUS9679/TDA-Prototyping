@@ -1,22 +1,23 @@
-# Topological Filtering Prototypes (GSoC 2026 Prep)
+# Topological Data Analysis (TDA) Prototype
 
-This repository contains research prototypes for the "Topological Filtering of Features" project proposed for CGAL.
-The goal is to filter noise from 3D meshes using Persistent Homology (TDA) rather than local angle checks.
+This repository contains a from-scratch C++ implementation of a Topological Data Analysis pipeline, developed as a proof-of-concept for Google Summer of Code (GSoC) 2026 with CGAL.
 
-## The Files
+## Architecture & Integration
+Unlike standard baseline forks, this prototype was built from the ground up to ensure deep understanding of the toolchain:
+* **Custom CMake:** A handcrafted `CMakeLists.txt` designed to dynamically link complex mathematical dependencies.
+* **CGAL 6.0.3:** Utilized for core geometric data structures and mesh processing.
+* **Gudhi:** Integrated for advanced topological computations (Simplex Trees, Persistence Homology).
 
-### 1. benchmark_final.cpp
-* **Purpose:** Demonstrates the failure case of the current PMP::detect_sharp_edges algorithm.
-* **Findings:** The current algorithm detects **109 false positives** on a simple plane with random Z-noise (Amplitude 0.4).
-* **Status:** Reported as a GitHub Issue on the main CGAL repository.
-* **Methodology:** Generates a synthetic 20x20 grid, perturbs vertices with random noise, and counts sharp edges detected at a 45-degree threshold.
+## Benchmarking Models
+The repository includes custom `.off` (Object File Format) files created specifically to benchmark the algorithm's performance on edge cases:
+* `angle_test.off`
+* `noisy_plane_benchmark.off`
 
-### 2. find_saddles.cpp (The 3D Solver)
-* **Purpose:** A custom, lightweight implementation of the topological pipeline without external libraries.
-* **Algorithm:**
-    * **Flow:** Computes Steepest Descent for every vertex to determine flow direction.
-    * **Basins:** Performs Watershed Segmentation using a Union-Find data structure to group vertices into catchment basins.
-    * **Persistence:** Calculates the persistence value (Saddle_Height - Basin_Height) to distinguish significant features from topological noise.
+## Build Instructions
+This project uses CMake. To compile natively on a Linux/macOS environment:
 
-## Goal
-To integrate this persistence-based filtering into CGAL::Polygon_mesh_processing to robustly detect sharp features even on noisy input scans.
+```bash
+mkdir build
+cd build
+cmake ..
+make -j4
